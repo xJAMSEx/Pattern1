@@ -34,7 +34,7 @@ class DeliveryTest {
         $("[name='name']").setValue(validUser.getName());
         $("[name='phone']").setValue(validUser.getPhone());
         $(".checkbox__box").click();
-        $$("button").find(Condition.exactText("Забронировать")).click();
+        $$("button").find(Condition.exactText("Запланировать")).click();
 
 
         if ($(withText("Доставка в выбранный город недоступна")).isDisplayed()) {
@@ -46,13 +46,13 @@ class DeliveryTest {
             $(".menu-item__control").click();
             $(".button__text").click();
         }
-        $("div.notification__content").shouldHave(Condition.exactText("Встреча успешно забронирована на " + firstMeetingDate));
+        $("div.notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + firstMeetingDate));
         $("[placeholder='Дата встречи']").sendKeys(Keys.chord(Keys.SHIFT, Keys.UP), Keys.DELETE);
         $("[placeholder='Дата встречи']").setValue(secondMeetingDate);
-        $$("button").find(Condition.exactText("Забронировать")).click();
+        $$("button").find(Condition.exactText("Запланировать")).click();
         $(withText("Необходимо подтверждение")).shouldBe(Condition.visible, Duration.ofSeconds(15));
         $("div.notification__content > button").click();
-        $("div.notification__content").shouldHave(Condition.exactText("Встреча успешно забронирована на " + secondMeetingDate));
+        $("div.notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + secondMeetingDate));
     }
 
 }
